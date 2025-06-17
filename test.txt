@@ -1,0 +1,309 @@
+'use client'
+import React, { useState, useRef, useCallback } from 'react';
+import ReactCrop, { Crop } from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+
+const ImageCropper = () => {
+  const [upImg, setUpImg] = useState<string | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [crop, setCrop] = useState<Crop>({ unit: '%', width: 50, aspect: undefined });
+  const [completedCrop, setCompletedCrop] = useState<Crop | null>(null);
+
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setCrop({ unit: '%', width: 50, aspect: undefined });
+      const reader = new FileReader();
+      reader.addEventListener('load', () => setUpImg(reader.result as string));
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const onLoad = useCallback((img: HTMLImageElement) => {
+    imgRef.current = img;
+  }, []);
+
+  // Génère l'image recadrée sur le canvas
+  const generatePreview = useCallback((crop: Crop) => {
+    if (!crop || !imgRef.current || !previewCanvasRef.current) return;
+    const image = imgRef.current;
+    const canvas = previewCanvasRef.current;
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = crop.width! * scaleX;
+    canvas.height = crop.height! * scaleY;
+
+    ctx.drawImage(
+      image,
+      crop.x! * scaleX,
+      crop.y! * scaleY,
+      crop.width! * scaleX,
+      crop.height! * scaleY,
+      0,
+      0,
+      crop.width! * scaleX,
+      crop.height! * scaleY
+    );
+  }, []);
+
+  // Génère l'aperçu à chaque crop terminé
+  React.useEffect(() => {
+    if (completedCrop) {
+      generatePreview(completedCrop);
+    }
+  }, [completedCrop, generatePreview]);
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Recadrage d'image façon imgtools</h1>
+      <input type="file" accept="image/*" onChange={onSelectFile} />
+
+      {upImg && (
+        <div style={{ marginTop: '20px' }}>
+          <ReactCrop
+            crop={crop}
+            onChange={c => setCrop(c)}
+            onComplete={c => setCompletedCrop(c)}
+            onImageLoaded={onLoad}
+            aspect={undefined} // Cadre libre
+          >
+            <img ref={imgRef} src={upImg} alt="Source" style={{ maxWidth: '100%' }} />
+          </ReactCrop>
+        </div>
+      )}
+
+      {completedCrop && (
+        <>
+          <h2 style={{ marginTop: '20px' }}>Aperçu du recadrage</h2>
+          <canvas
+            ref={previewCanvasRef}
+            style={{
+              width: Math.round(completedCrop.width ?? 0),
+              height: Math.round(completedCrop.height ?? 0),
+              border: '1px solid black',
+              marginTop: '10px'
+            }}
+          />
+          <a
+            href={previewCanvasRef.current?.toDataURL('image/png')}
+            download="image-recadree.png"
+            style={{
+              marginLeft: '10px',
+              padding: '10px',
+              backgroundColor: '#007bff',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '5px',
+              display: 'inline-block'
+            }}
+          >
+            Télécharger l'image recadrée
+          </a>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ImageCropper;
+
+
+
+
+
+// avec effet rotation 
+
+
+
+'use client'
+import React, { useState, useRef } from 'react';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+
+const Header = () => {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [crop, setCrop] = useState<any>({ unit: '%', width: 50, aspect: 1 });
+  const [completedCrop, setCompletedCrop] = useState<any>(null);
+  const [rotation, setRotation] = useState(0);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setImageUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const onLoad = (img: HTMLImageElement) => {
+    imgRef.current = img;
+  };
+
+  const handleCrop = () => {
+    if (!completedCrop || !imgRef.current || !previewCanvasRef.current) return;
+
+    const canvas = previewCanvasRef.current;
+    const image  = imgRef.current;
+
+    const crop = completedCrop;
+
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    const croppedWidth = crop.width * scaleX;
+    const croppedHeight = crop.height * scaleY;
+
+    canvas.width = croppedWidth;
+    canvas.height = croppedHeight;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // On applique la rotation
+    ctx.save();
+    ctx.translate(croppedWidth / 2, croppedHeight / 2);
+    ctx.rotate((rotation * Math.PI) / 180);
+    ctx.translate(-croppedWidth / 2, -croppedHeight / 2);
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      croppedWidth,
+      croppedHeight,
+      0,
+      0,
+      croppedWidth,
+      croppedHeight
+    );
+    ctx.restore();
+  };
+
+  return (
+    <div>
+      <h1 className="text-3xl mb-4">Éditeur avec rotation</h1>
+
+      <input type="file" accept="image/*" onChange={handleFileChange} />
+
+      {imageUrl && (
+        <>
+          <ReactCrop
+            src={imageUrl}
+            crop={crop}
+            onChange={(c) => setCrop(c)}
+            onComplete={(c) => setCompletedCrop(c)}
+            onImageLoaded={onLoad}
+          />
+
+          <div className="my-4">
+            <label>Rotation: {rotation}°</label>
+            <input
+              type="range"
+              min={0}
+              max={360}
+              value={rotation}
+              onChange={(e) => setRotation(Number(e.target.value))}
+            />
+          </div>
+
+          <button onClick={handleCrop} className="px-4 py-2 bg-blue-500 text-white rounded">
+            Rogner et appliquer la rotation
+          </button>
+
+          <div className="mt-4">
+            <canvas ref={previewCanvasRef} style={{ border: '1px solid black' }} />
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Header;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// pivotage d'image
+
+
+'use client'
+import React, { useRef, useState } from 'react';
+
+const PivotImage = () => {
+  const [imgUrl, setImgUrl] = useState<string | null>(null);
+  const [rotation, setRotation] = useState(0);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = () => setImgUrl(reader.result as string);
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const handlePivot = () => {
+    setRotation(r => (r + 90) % 360);
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <h2 className="text-xl font-bold">Pivotage d'image</h2>
+      <input type="file" accept="image/*" onChange={onChangeFile} />
+      {imgUrl && (
+        <div className="flex flex-col items-center gap-2">
+          <img
+            ref={imgRef}
+            src={imgUrl}
+            alt="A pivoter"
+            style={{
+              maxWidth: 400,
+              maxHeight: 400,
+              transform: `rotate(${rotation}deg)`,
+              transition: 'transform 0.3s',
+              border: '2px solid #007bff',
+              borderRadius: 8,
+              background: '#fff'
+            }}
+          />
+          <button
+            className="px-3 py-1 bg-gray-200 rounded"
+            onClick={handlePivot}
+            title="Pivoter de 90°"
+          >
+            ↻ Pivoter 90°
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PivotImage;
+
+
+
+
+
+
+
+
+
+
+
+
