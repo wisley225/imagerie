@@ -2,24 +2,27 @@
 
 import React from 'react';
 import axios from 'axios';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
+import Image from 'next/image';
 
-const Page = () => {
+const Resize = () => {
 
 const [fichier,setFichier]=useState<File|null>(null)
 const [width,setWidth]=useState('')
 const [height,setHeight]=useState('')
 const [blob,setBlob]=useState<Blob|null>(null)
 const [blobUrl,setBlobUrl]=useState<string|null>(null)
+const selectFileRef = useRef<HTMLInputElement>(null)
+const [select,setSelect]=useState(false)
 
-
-
+const handleClick=()=>{
+    selectFileRef.current?.click()
+}
 const handleFileChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
 if (e.target.files && e.target.files.length>0) {
      setFichier(e.target.files[0]);
+     setSelect(true);
 }
-
-
 }
 
 const handleSubmit=async(e:React.FormEvent<HTMLFormElement>)=>{
@@ -56,24 +59,50 @@ height && formData.append('height',height)
  }, [blob]);
 
     return (
-        <div>
-               <form onSubmit={(e)=>handleSubmit(e)} className="m-5">
-            <input type="file" onChange={(e)=>handleFileChange(e)} />
-            <input
+        <div className='  flex flex-col items-center justify-center'>
+               <form  onSubmit={(e)=>handleSubmit(e)} className="m-5">
+              <h1 className='  text-center mb-3 bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent'> cliquez sur le dessin et selectionnez vos images</h1>
+            <input className=' hidden  ' ref={selectFileRef} type="file" onChange={(e)=>handleFileChange(e)} />
+      
+       <div  onClick={handleClick} className='hover:scale-95 transition-all active:scale-100  relative h-72 w-96 rounded-xl  m-auto mb-5 cursor-pointer shadow-lg  hover:shadow-cyan-100 '>
+        <Image
+        
+            src="/resize.png"
+            alt="Redimensionner une image"
+            fill
+            className=" rounded-xl  object-cover "
+        />
+       </div>
+
+
+        {
+        
+        select &&
+       <div className=' flex flex-col items-center'>
+
+        <div className=' mb-5 place-items-center'>
+ <input
                 type="number"
                 placeholder="Largeur (px)"
                 value={width}
                 onChange={e => setWidth(e.target.value)}
-                className="ml-2"
+                className="ml-2 outline-1 outline-cyan-600 rounded-md "
             />
             <input
                 type="number"
                 placeholder="Hauteur (px)"
                 value={height}
                 onChange={e => setHeight(e.target.value)}
-                className="ml-2"
+                className="ml-2 pl-2 outline-1 rounded-md outline-cyan-600"
             />
-            <button type="submit" className="ml-2 px-4 py-2 bg-blue-600 text-white rounded">Compresser & Redimensionner</button>
+        </div>
+
+
+        <button type="submit" className="ml-2 px-4 py-2 bg-cyan-600 cursor-pointer hover:bg-cyan-500 active:scale-95 transition-all text-white rounded"> Redimensionner</button>
+
+       </div> 
+       
+            }
         </form>
   {blobUrl && (
             <a
@@ -88,7 +117,7 @@ height && formData.append('height',height)
     );
 }
 
-export default Page;
+export default Resize;
 
 
 

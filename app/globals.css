@@ -1,12 +1,7 @@
 @import "tailwindcss";
 
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+
 
 
 .ReactCrop__crop-selection {
@@ -18,14 +13,16 @@
 
 /* Poignées de redimensionnement */
 .ReactCrop__drag-handle {
-  background: rgb(101, 101, 252)  !important;
+
   border-radius: 50%;
   width: 16px;
   height: 16px;
   border: 2px solid;
   box-shadow: 0 0 4px #00b89488;
+  
 }
 
 .paysage{
-  box-shadow: 10 20px  20px black
+  box-shadow: 10 20px  20px black;
+  border-style:dotted;
 }

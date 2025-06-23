@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ReactCrop, { Crop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-const Page = () => {
+const Rogner = () => {
 
     const [imgUrl, setImageUrl] = useState<string | null>(null);
       const imgRef = useRef<HTMLImageElement | null>(null);
@@ -85,14 +85,16 @@ const Page = () => {
 
 
     return (
-        <div>
+        <div className=' border'>
               <h1>Recadrage d'image façon imgtools</h1>
       <input type="file" accept="image/*" onChange={onChangeFile} />
 
       {/* Slider de rotation */}
       {imgUrl && (
-        <div className="flex items-center gap-4 my-4 justify-center">
-          <label htmlFor="rotation">Rotation :</label>
+
+  <div className=' mb-5 '>
+ <div className="flex items-center gap-4 my-4 justify-center ">
+          <label htmlFor="rotation " className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent text-xl font-serif'>Rotation :</label>
           <input
             id="rotation"
             type="range"
@@ -100,20 +102,19 @@ const Page = () => {
             max={360}
             value={rotation}
             onChange={e => setRotation(Number(e.target.value))}
-            style={{ width: 200 }}
+            style={{ width: 200 , border:" dotted 1px "}}
           />
           <span>{rotation}°</span>
-        </div>
-      )}
-
-      {imgUrl && (
-        <div className='border border-red-600 w-1/2 m-auto'>
+ </div>
+    
+    <div className=' flex justify-around'>
+ <div className=' flex  justify-center items-center w-1/2  rounded-md shadow-lg transition-all  border-8 border-cyan-600  '>
           <ReactCrop
             crop={crop}
             onChange={c => setCrop(c)}
             onComplete={c => setCompletedCrop(c)}
             aspect={undefined} // Cadre libre
-            className='border-2 border-blue-500 size-full'
+            className='bg-cover rounded-md  '
           >
             <img
               ref={imgRef}
@@ -121,33 +122,47 @@ const Page = () => {
               alt="Source"
               style={{ maxWidth: '100%' }}
               onLoad={e => onLoad(e.currentTarget)}
-              className='border-4 size-full object-center'
+              className='  object-center bg-cover  '
             />
           </ReactCrop>
         </div>
-      )}
 
-      {completedCrop && (
+  <div className=' text-center'>
+ {completedCrop && (
         <>
-          <h2 style={{ marginTop: '20px' }}>Aperçu du recadrage</h2>
-          <canvas
+          <h2 className=' bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent text-xl font-serif' >Aperçu du recadrage</h2>
+          <div className=' my-3 border  shadow-md' >
+              <canvas
             ref={visuelCanvasRef}
             style={{
               width: Math.round(completedCrop.width ?? 0),
               height: Math.round(completedCrop.height ?? 0),
-              border: '1px solid black',
-              marginTop: '10px'
+               objectFit: 'cover',
+               objectPosition: 'center',
+             
             }}
           />
+          </div>
+      
        
 
-          <button onClick={handleCrop} className="px-4 py-2 bg-blue-500 text-white rounded">
+          <button onClick={handleCrop} className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 cursor-pointer text-white rounded">
             Rogner et appliquer la rotation
           </button>
         </>
       )}
+  </div>
+
+    </div>
+       
+  </div>
+
+       
+      )}
+
+     
         </div>
     );
 }
 
-export default Page;
+export default Rogner;

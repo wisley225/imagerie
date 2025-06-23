@@ -1,7 +1,7 @@
 
 'use client'
 import React, { useState, useRef } from 'react';
-const Page = () => {
+const Pivoter = () => {
   const [imgUrl, setImgUrl] = useState<string | null>(null);
   const [rotation, setRotation] = useState(0);
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -108,4 +108,4 @@ const Page = () => {
     );
 }
 
-export default Page;
+export default Pivoter;
