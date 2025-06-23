@@ -52,7 +52,7 @@ const handleTraitement = (type: string) => {
 
 
 
-<ul className='flex w-1/2  justify-around  m-auto '>
+<ul className='flex w-1/2  justify-around  m-auto my-5'>
    <li onClick={()=>handleTraitement("resize")} className=' border flex flex-col justify-center  items-center size-28 cursor-pointer rounded-2xl transition-all hover:text-white 
    bg-gradient-to-r   hover:from-cyan-600 hover:to-teal-400 hover:via-cyan-600 text-cyan-600 shadow-xl  hover:shadow-teal-400  active:scale-90 '> <PiResizeDuotone className='text-xl mb-2  ' /> <span className=' '>Redimension</span> </li>
    <li onClick={()=>handleTraitement("compresser")} className=' border flex flex-col justify-center  items-center size-28 cursor-pointer rounded-2xl transition-all hover:text-white 
