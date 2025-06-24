@@ -1,18 +1,135 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, use } from 'react';
 import Image from 'next/image';
 import '../../app/globals.css'
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
 const Header = () => {
+ const cadreRef = useRef<HTMLDivElement>(null);
+ const imgRef=useRef<(HTMLDivElement |null) []>([]);
+const visibleRef = useRef<(HTMLDivElement | null)[]>([]);
+const visibleRef2 = useRef<(HTMLDivElement | null)[]>([]);
+
+ const animateEnter = () =>{
+
+if ( imgRef.current) {
+  const ctx=gsap.context(()=>{
+
+    if (cadreRef.current && imgRef.current) {
+      let tl=gsap.timeline();
+      tl.to(imgRef.current[0], {
+        x: -200,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      })
+      .to(imgRef.current[1], {
+        x: 100,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      })
+      .to(imgRef.current[2], {
+        y: 100,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      });
+    }
+
+
+})
+  return ()=>ctx.revert()
+}
+
+  
+ }
+
+ const animateLeave = () =>{
+
+if ( imgRef.current) {
+  const ctx=gsap.context(()=>{
+
+    if (cadreRef.current && imgRef.current) {
+      let tl=gsap.timeline();
+      tl.to(imgRef.current[0], {
+        x: 0,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      })
+      .to(imgRef.current[1], {
+        x: 0,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      })
+      .to(imgRef.current[2], {
+        y: 0,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      });
+    }
+
+
+})
+  return ()=>ctx.revert()
+}
+
+  
+ }
+
+ useEffect(()=>{
+const ctx=gsap.context( ()=>{
+  if( visibleRef.current){
+    gsap.from(visibleRef.current,{
+      y: 50,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      stagger: 0.2,
+      scrollTrigger:{
+        trigger: visibleRef.current,
+   
+        start: 'top 80%',
+      
+      }
+    })
+  }
+})
+
+return ()=>ctx.revert()
+ },[])
+
+
+  useEffect(()=>{
+const ctx=gsap.context( ()=>{
+  if( visibleRef2.current){
+    gsap.from(visibleRef2.current,{
+      y: 50,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      stagger: 0.2,
+      scrollTrigger:{
+        trigger: visibleRef2.current,
+       
+        start: 'top 80%',
+      
+      }
+    })
+  }
+})
+
+return ()=>ctx.revert()
+ },[])
  
 
   return (
 
   <>
-   <div>
-   <div className="  h-svh ">
-<div className=' h-full backdrop-blur-sm pt-20 px-5 '>
-<div className='   absolute  top-64 z-20  mb-5   w-5/12 flex flex-col  items-center'>
+   <div className='px-10'>
+   <div className="  h-svh   ">
+<div className=' flex   justify-around   items-center h-full backdrop-blur-sm pt-20 px-5 '>
+<div className=' top-64 z-20  mb-5    w-5/12 max-[840px]:w-full   flex flex-col  items-center'>
 <h1 className='  bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5   text-center  text-4xl uppercase font-black font-serif '>Le traitement d’images simple, rapide et puissant. </h1>
 <p className=' mb-5  text-center '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, temporibus odit sunt numquam modi facere earum 
   corrupti quos? Repellendus quam delectus amet cum voluptatum, fuga similique eaque earum, dolore asperiores dolor quidem qui reprehenderit 
@@ -20,9 +137,14 @@ const Header = () => {
 <Link href='/traitement' className=' cursor-pointer hover:bg-cyan-500 transition-all  bg-cyan-600 text-white text-xl px-4 py-1 rounded-full'>Get Started</Link>
 </div>
 
-
-
-   <div className=' paysage relative left-[600px]  top-20 h-60 w-80  -rotate-10   rounded-md shadow-2xl '>
+<div  onMouseEnter={()=>animateEnter()}
+       onMouseLeave={()=> animateLeave()}
+ ref={cadreRef} className='  h-96  z-30  flex cursor-pointer max-[840px]:hidden  '>
+<div ref={el=>{if (imgRef.current) {
+    imgRef.current[0]=el;
+  }
+  
+}} className=' paysage   top-20 h-60 w-80  -rotate-10   rounded-md shadow-2xl '>
  <Image
   src='/paysage1.png'
   alt='paysage'
@@ -31,7 +153,11 @@ const Header = () => {
   />
     </div>   
  
-  <div className=' paysage relative h-60 w-80 left-[900px]   rotate-10 rounded-md shadow-2xl '>
+  <div ref={el=>{if (imgRef.current) {
+      imgRef.current[1]=el;
+  }
+    
+  }} className=' paysage  h-60 w-80  absolute   rotate-10 rounded-md shadow-2xl '>
  <Image
   src='/paysage2.jpg'
   alt='paysage'
@@ -39,7 +165,11 @@ const Header = () => {
  className=' object-cover border rounded-md'
   />
     </div> 
-   <div className=' paysage relative h-60 w-80  left-[650px]   bottom-40 rotate-5 rounded-md shadow-2xl '>
+   <div ref={el=>{if (imgRef.current) {
+      imgRef.current[2]=el;
+  }
+    
+   }} className=' paysage  h-60 w-80 absolute     bottom-40 rotate-5 rounded-md shadow-2xl '>
  <Image
   src='/paysage3.jpg'
   alt='paysage'
@@ -49,16 +179,18 @@ const Header = () => {
     </div>
 </div>
 
- 
-
-
-  
    
-    </div>
+</div>
 
-<h1  className='   bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>Redimensionner des images</h1>
-<div className='  flex  justify-center items-center  gap-20  '>
- <div className='  paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+ </div>
+
+<h1  className='   bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-10   text-center  text-4xl uppercase font-black font-serif '>Redimensionner des images</h1>
+<div className='  flex max-[840px]:flex-col   justify-center items-center  gap-20  '>
+ <div  ref={el=>{if (visibleRef.current) {
+      visibleRef.current[0]=el;
+  }
+    
+   }}  className=' max-[840px]:flex-col   paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 max-[840px]:w-1/2 '>
   
   <Image
     src='/redimenssioner.png'
@@ -68,7 +200,11 @@ const Header = () => {
   />
  </div>
 
-  <div className=' h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+  <div   ref={el=>{if (visibleRef.current) {
+      visibleRef.current[1]=el;
+  }
+    
+   }}  className=' h-[400px]   w-5/12  flex flex-col justify-around items-center text-center max-[840px]:w-full'>
    <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>Redimensionnez des photos en choisissant vos dimensions en pixels ou en pourcentages.
  </strong>
   <p className=' font-semibold'>
@@ -88,9 +224,13 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 {/*  section compresser */}
 
 <h1  className='   bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>compressez vos image</h1>
-<div className='  flex  justify-center items-center  gap-20  '>
+<div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
 
-  <div className=' h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+  <div  ref={el=>{if (visibleRef2.current) {
+      visibleRef2.current[0]=el;
+  }
+    
+   }}  className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
    <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>Compressez vos  photos en choisissant vos format en PNG , JPEG,WEBP.
  </strong>
   <p className=' font-semibold'>
@@ -106,7 +246,11 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
   </div>
 
 
- <div className='  paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+ <div  ref={el=>{if (visibleRef2.current) {
+      visibleRef2.current[1]=el;
+  }
+    
+   }} className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
   
   <Image
     src='/compresser.png'

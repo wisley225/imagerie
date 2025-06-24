@@ -113,7 +113,7 @@ const handleClick = () => {
               Télécharger l'image pivotée
             </button>
         
-            {/* <canvas ref={canvasRef} style={{ display: 'none' }} /> */}
+             <canvas ref={canvasRef} style={{ display: 'none' }} /> 
           
        </> ) :  
               <div  onClick={handleClick} className='hover:scale-95 transition-all active:scale-100  relative h-72 w-96 rounded-xl  m-auto mb-5 cursor-pointer shadow-lg  hover:shadow-cyan-100 '>

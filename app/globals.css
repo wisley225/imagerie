@@ -26,3 +26,11 @@
   box-shadow: 10 20px  20px black;
   border-style:dotted;
 }
+
+
+@media (max-width: 1130px) {
+.ulNavRef{
+  clip-path: polygon(0 0, 100% 0%, 100% 20%, 0 20%); 
+
+}
+}

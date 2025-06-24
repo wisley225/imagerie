@@ -77,10 +77,12 @@ if (blob) {
        <div  onClick={handleClick} className='hover:scale-95 transition-all active:scale-100  relative h-72 w-96 rounded-xl  m-auto mb-5 cursor-pointer shadow-lg  hover:shadow-cyan-100 '>
         <Image
         
-            src="/compress.jpg"
+            src={fichier ? URL.createObjectURL(fichier) : "/compress.jpg"}
             alt="Redimensionner une image"
             fill
             className=" rounded-xl   "
+           onLoad={e => URL.revokeObjectURL((e.target as HTMLImageElement).src)}
+
         />
        </div>
 

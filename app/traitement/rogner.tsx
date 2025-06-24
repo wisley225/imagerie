@@ -117,8 +117,8 @@ const Rogner = () => {
           <span>{rotation}°</span>
  </div>
     
-    <div className=' flex justify-around'>
- <div className=' flex  justify-center items-center w-1/2  rounded-md shadow-lg transition-all  border-8 border-cyan-600  '>
+    <div className='max-[940px]:items-center  flex justify-around max-[940px]:flex-col '>
+ <div className='max-[940px]:mb-10 flex  justify-center items-center w-1/2  rounded-md shadow-lg transition-all  border-8 border-cyan-600  '>
           <ReactCrop
             crop={crop}
             onChange={c => setCrop(c)}
@@ -137,11 +137,11 @@ const Rogner = () => {
           </ReactCrop>
         </div>
 
-  <div className=' text-center'>
+  <div className=' text-center  flex flex-col justify-center items-center '>
  {completedCrop && (
         <>
           <h2 className=' bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent text-xl font-serif' >Aperçu du recadrage</h2>
-          <div className=' my-3 border  shadow-md' >
+          <div className=' my-3    shadow-md ' >
               <canvas
             ref={visuelCanvasRef}
             style={{
@@ -156,7 +156,7 @@ const Rogner = () => {
       
        
 
-          <button onClick={handleCrop} className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 cursor-pointer text-white rounded">
+          <button onClick={handleCrop} className=" m-auto px-4 py-2 bg-cyan-600 hover:bg-cyan-500 cursor-pointer text-white rounded">
             Rogner et appliquer la rotation
           </button>
         </>
