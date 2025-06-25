@@ -11,7 +11,10 @@ const Header = () => {
  const cadreRef = useRef<HTMLDivElement>(null);
  const imgRef=useRef<(HTMLDivElement |null) []>([]);
 const visibleRef = useRef<(HTMLDivElement | null)[]>([]);
+ const rognerRef=useRef<(HTMLDivElement | null)[]>([])
+ const pivoterRef=useRef<(HTMLDivElement | null)[]>([])
 const visibleRef2 = useRef<(HTMLDivElement | null)[]>([]);
+ const convertirRef=useRef<(HTMLDivElement | null)[]>([])
 
  const animateEnter = () =>{
 
@@ -121,7 +124,73 @@ const ctx=gsap.context( ()=>{
 
 return ()=>ctx.revert()
  },[])
+
+  useEffect(()=>{
+const ctx=gsap.context( ()=>{
+  if( convertirRef.current){
+    gsap.from(convertirRef.current,{
+      y: 50,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      stagger: 0.2,
+      scrollTrigger:{
+        trigger: convertirRef.current,
+       
+        start: 'top 80%',
+      
+      }
+    })
+  }
+})
+
+return ()=>ctx.revert()
+ },[])
+
+
+  useEffect(()=>{
+const ctx=gsap.context( ()=>{
+  if( pivoterRef.current){
+    gsap.from(pivoterRef.current,{
+      y: 50,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      stagger: 0.2,
+      scrollTrigger:{
+        trigger: pivoterRef.current,
+       
+        start: 'top 80%',
+      
+      }
+    })
+  }
+})
+
+return ()=>ctx.revert()
+ },[])
  
+  useEffect(()=>{
+const ctx=gsap.context( ()=>{
+  if( rognerRef.current){
+    gsap.from(rognerRef.current,{
+      y: 50,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      stagger: 0.2,
+      scrollTrigger:{
+        trigger: rognerRef.current,
+       
+        start: 'top 80%',
+      
+      }
+    })
+  }
+})
+
+return ()=>ctx.revert()
+ },[])
 
   return (
 
@@ -262,7 +331,112 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
 </div>
 
-    </div>
+
+{/* convertir */}
+<h1  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>convertissez vos images</h1>
+<div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
+
+
+<div ref={el=>{if (convertirRef.current) {
+      convertirRef.current[0]=el;
+  }}}   className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+  
+  <Image
+    src='/convert.webp'
+    alt='image de compression'
+    fill
+    className=' rounded-md  mx-auto'
+  />
+</div>
+
+<div 
+  ref={el=>{if (convertirRef.current) {
+      convertirRef.current[1]=el;
+  }}} 
+  className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+   <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>Convertissez vos images et  vos  photos</strong>
+  <p className=' font-semibold'>
+Vous pouvez choisir de conserver le ratio largeur/hauteur ou choisir des dimensions libres.
+Le traitement par lot permet de redimensionner plusieurs images en même temps puis de les télécharger dans une archive ZIP.
+  
+  </p>
+  <p className='font-semibold'>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut labore adipisci ex corporis? Expedita nostrum itaque, perferendis esse qui molestiae?
+  </p>
+  <button className=' cursor-pointer hover:bg-cyan-500 transition-all  bg-cyan-600 text-white text-xl px-4 py-1 rounded-full'>Convertir</button>
+
+</div>
+
+
+
+</div>
+
+
+{/*  rogner des images */}
+
+<h1  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>rognez vos images</h1>
+<div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
+
+  <div   className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+   <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>Convertissez vos images et  vos  photos</strong>
+  <p className=' font-semibold'>
+Vous pouvez choisir de conserver le ratio largeur/hauteur ou choisir des dimensions libres.
+Le traitement par lot permet de redimensionner plusieurs images en même temps puis de les télécharger dans une archive ZIP.
+  
+  </p>
+  <p className='font-semibold'>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut labore adipisci ex corporis? Expedita nostrum itaque, perferendis esse qui molestiae?
+  </p>
+  <button className=' cursor-pointer hover:bg-cyan-500 transition-all  bg-cyan-600 text-white text-xl px-4 py-1 rounded-full'>Convertir</button>
+
+  </div>
+ 
+ <div  className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+  
+  <Image
+    src='/rogner.webp'
+    alt='image de compression'
+    fill
+    className=' rounded-md  mx-auto'
+  />
+ </div>
+
+</div>
+
+
+
+{/*  pivotez  des image */}
+
+<h1  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '> pivotez vos images puis telechargez les </h1>
+<div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
+
+  <div   className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+   <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>pivotez  vos images et  vos  photos</strong>
+  <p className=' font-semibold'>
+Vous pouvez choisir de conserver le ratio largeur/hauteur ou choisir des dimensions libres.
+Le traitement par lot permet de redimensionner plusieurs images en même temps puis de les télécharger dans une archive ZIP.
+  
+  </p>
+  <p className='font-semibold'>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut labore adipisci ex corporis? Expedita nostrum itaque, perferendis esse qui molestiae?
+  </p>
+  <button className=' cursor-pointer hover:bg-cyan-500 transition-all  bg-cyan-600 text-white text-xl px-4 py-1 rounded-full'>pivotez vos images</button>
+
+  </div>
+ 
+ <div  className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+  
+  <Image
+    src='/pivoter.webp'
+    alt="image de  video pivoter "
+    fill
+    className=' rounded-md  mx-auto'
+  />
+ </div>
+
+</div>
+
+</div>
   </>
    
 

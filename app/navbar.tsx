@@ -72,16 +72,6 @@ tl.to(menuRef.current,{
          duration: 0.1,
     })
 
-    //   .to( listLi.current,{
-    //      clipPath:'polygon(0 0, 100% 0%, 100% 0, 0 0)',
-    //      stagger:0.1,
-    //      duration: 0.1,
-    //  })
-
-
-
-    
-
 
 
 
@@ -108,9 +98,6 @@ tl.to(menuRef.current,{
     />
     </div>
 
-
-
-
      <div  className='min-[1130px]:hidden   cursor-pointer w-40 h-10 flex justify-end   ' >
 
    <div onClick={()=>setOpenMenu((prev)=>(!prev))} ref={menuRef} className=' flex flex-col justify-evenly '>
@@ -128,27 +115,27 @@ tl.to(menuRef.current,{
                     listLi.current[0]=el;
                 }}  className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm  hover:brightness-75 cursor-pointer transition-all  '>redimenssionner des images</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm  hover:brightness-75 cursor-pointer transition-all  '> accueil</li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[1]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>Compresser des images</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>traitemment</li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[3]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>Convertir des images</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>service</li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[4]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>Rognager des Image</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>contact</li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[5]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text  text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>rotation des images</li>
+                max-[1130px]:flex bg-clip-text  text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '> a propos</li>
     </ul>
 
 
