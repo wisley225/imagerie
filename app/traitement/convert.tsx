@@ -68,7 +68,7 @@ try {
        <div  onClick={handleClick} className='hover:scale-95 transition-all active:scale-100  relative h-72 w-96 rounded-xl  m-auto mb-5 cursor-pointer shadow-lg  hover:shadow-cyan-100 '>
         <Image
         
-            src="/convert.webp    "
+            src="/convert.webp"
             alt="Redimensionner une image"
             fill
             className=" rounded-xl  object-cover "
