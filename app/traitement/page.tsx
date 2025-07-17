@@ -11,10 +11,16 @@ import Compresser from './compresser';
 import { useState} from 'react';
 import Rogner from './rogner';
 import Pivoter from './pivoter';
+import { useRouter } from 'next/navigation';
 const Page = () => {
 
 const [traitement, setTraitement] = useState<string | null>(null);
+  const router = useRouter();
 
+
+const handleClicklogo=()=>{
+  router.push('/accueil');
+}
 const handleTraitement = (type: string) => {
     setTraitement(type);
     
@@ -24,7 +30,7 @@ const handleTraitement = (type: string) => {
 
     return (
         <div>
-      <div className='relative w-40 h-20 '>
+      <div onClick={handleClicklogo} className='relative w-40 h-20 '>
                   <Image
                   src='/logoImagerie.png'
                   alt='logo imagerie'
