@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import multer from 'multer';
 import sharp from 'sharp';
 
 
