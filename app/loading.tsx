@@ -53,20 +53,15 @@ const animationRef = useRef<(HTMLDivElement | null)[]>([]);
 
 
   return (
-    <div className='  h-screen   flex items-center justify-center '>
-
-      <div className=' h-64 flex items-center  justify-between '>
-  <div className=''>
-        <div  className='border-2 rounded-xl border-blue-400  shadow-cyan-600 absolute  animate-spin rotate-90  size-40' />
-       <div  className=' border-2 rounded-xl   shadow-cyan-600 absolute -scale-x-100   rotate-45 size-36 animate-spin' />
-       <Image alt=' image ' className=' animate-pulse ' height={150} width={150} src='/imageLoader.png' priority/>
+    <div className='h-screen flex items-center justify-center bg-white'>
+      <div className='h-64 w-full max-w-4xl flex flex-col md:flex-row items-center justify-between px-4 md:px-10'>
+        <div className='relative flex flex-col items-center justify-center mb-8 md:mb-0'>
+          <div className='border-2 rounded-xl border-blue-400 shadow-cyan-600 absolute animate-spin rotate-90 size-40 hidden sm:block' />
+          <div className='border-2 rounded-xl shadow-cyan-600 absolute -scale-x-100 rotate-45 size-36 animate-spin hidden sm:block' />
+          <Image alt='image' className='animate-pulse rounded-xl' height={120} width={120} src='/imageLoader.png' priority/>
+        </div>
+        <h1 className='animate-pulse mb-3 bg-clip-text bg-gradient-to-r from-cyan-600 to-teal-400 via-cyan-600 text-transparent text-4xl sm:text-6xl md:text-8xl font-serif py-2 text-center'>Imagerie</h1>
       </div>
-     <h1 className='  animate-pulse  mb-3 bg-clip-text  bg-gradient-to-r 
-       from-cyan-600 to-teal-400 via-cyan-600   text-transparent text-8xl  font-serif '> Imagerie</h1>
-    
-       
-      </div>
-     
     </div>
   );
  }
