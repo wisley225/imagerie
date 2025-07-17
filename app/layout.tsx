@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 import { FaSquareGithub } from "react-icons/fa6";
 import { IoLogoVercel } from "react-icons/io5";
 

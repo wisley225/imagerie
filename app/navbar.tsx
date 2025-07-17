@@ -1,9 +1,6 @@
 'use client'
-import React from 'react';
+
 import Image from 'next/image';
-import { FaUserCircle } from "react-icons/fa";
-import { CgMenu } from "react-icons/cg";
-import { CgMenuMotion } from "react-icons/cg";
 import { useRef , useEffect ,useState} from 'react';
 import gsap from 'gsap';
 import Link from 'next/link';
@@ -95,6 +92,8 @@ tl.to(menuRef.current,{
     src='/logoImagerie.png'
     alt='logo imagerie'
     fill
+     sizes="(max-width: 600px) 100vw, 15vw" // adapté à la largeur réelle du conteneur
+  priority 
     className='object-cover object-center'
     />
     </div>

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState,useEffect ,useRef} from 'react';
+import { useState,useEffect ,useRef} from 'react';
 import axios from 'axios'
 import Image from 'next/image';
 const Compresser = () => {

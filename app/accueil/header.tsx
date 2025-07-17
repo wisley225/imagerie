@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect, use } from 'react';
+import  { useRef, useEffect} from 'react';
 import Image from 'next/image';
 import '../../app/globals.css'
 import Link from 'next/link';
@@ -215,7 +215,7 @@ return ()=>ctx.revert()
   
 }} className=' paysage   top-20 h-60 w-80  -rotate-10   rounded-md shadow-2xl '>
  <Image
-  src='/paysage1.png'
+  src='/paysage1.jpg'
   alt='paysage'
  fill
  className=' object-cover border rounded-md'
@@ -231,6 +231,8 @@ return ()=>ctx.revert()
   src='/paysage2.jpg'
   alt='paysage'
  fill
+  sizes="(max-width: 840px) 100vw, 33vw" 
+  priority //
  className=' object-cover border rounded-md'
   />
     </div> 
@@ -240,9 +242,11 @@ return ()=>ctx.revert()
     
    }} className=' paysage  h-60 w-80 absolute     bottom-40 rotate-5 rounded-md shadow-2xl '>
  <Image
-  src='/paysage3.jpg'
+  src='/rogner.webp'
   alt='paysage'
   fill
+   sizes="(max-width: 840px) 100vw, 33vw" 
+  priority //
  className=' object-cover border rounded-md'
   />
     </div>
@@ -265,6 +269,8 @@ return ()=>ctx.revert()
     src='/redimenssioner.png'
     alt='logo imagerie'
     fill
+    sizes="(max-width: 840px) 100vw, 33vw" // adapté à la largeur réelle
+    priority 
     className=' rounded-md object-cover  mx-auto'
   />
  </div>
@@ -325,6 +331,8 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
     src='/compresser.png'
     alt='image de compression'
     fill
+    sizes="(max-width: 840px) 100vw, 33vw" // adapté à la largeur réelle
+    priority //
     className=' rounded-md  mx-auto'
   />
  </div>
@@ -345,6 +353,8 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
     src='/convert.webp'
     alt='image de compression'
     fill
+    sizes="(max-width: 840px) 100vw, 33vw" // adapté à la largeur réelle
+    priority //
     className=' rounded-md  mx-auto'
   />
 </div>
@@ -405,6 +415,8 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
     src='/rogner.webp'
     alt='image de compression'
     fill
+     sizes="100vw"
+  priority //
     className=' rounded-md  mx-auto'
   />
  </div>
@@ -445,6 +457,8 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
     src='/pivoter.webp'
     alt="image de  video pivoter "
     fill
+    sizes="(max-width: 840px) 100vw, 33vw" // adapté à la largeur réelle
+    priority //
     className=' rounded-md  mx-auto'
   />
  </div>

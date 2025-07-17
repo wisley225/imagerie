@@ -1,6 +1,4 @@
 'use client';
-
-import React from 'react';
 import Image from 'next/image';
 import { MdCompress } from "react-icons/md";
 import { SiConvertio } from "react-icons/si";
@@ -31,6 +29,7 @@ const handleTraitement = (type: string) => {
                   src='/logoImagerie.png'
                   alt='logo imagerie'
                   fill
+                  sizes="(max-width: 600px) 100vw, 15vw" // adapté à la largeur réelle du conteneur
                   className='object-cover object-center'
                   />
       </div>
