@@ -70,7 +70,7 @@ const handleClick = () => {
     return (
         <div>
            <div className="flex flex-col items-center gap-4">
-        <h2 className="text-xl font-bold  text-center mb-3 bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent">Pivotage d'image</h2>
+        <h2 className="text-xl font-bold  text-center mb-3 bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent">Pivotage d&apos;image</h2>
         <input type="file" className=' hidden' ref={selectFileRef} accept="image/*" onChange={onChangeFile} />
 
 
@@ -87,7 +87,7 @@ const handleClick = () => {
             </button>
 
           <div className="flex flex-col items-center justify-center gap-2  h-[400px]">
-            <img
+            <Image
               ref={imgRef}
               src={imgUrl}
               alt="A pivoter"
@@ -108,9 +108,9 @@ const handleClick = () => {
             <button
               className="px-3 py-1  bg-cyan-600  hover:bg-cyan-500 text-white rounded"
               onClick={handleDownload}
-              title="Télécharger l'image pivotée"
+              title="Télécharger l&apos;image pivotée"
             >
-              Télécharger l'image pivotée
+              Télécharger l&apos;image pivotée
             </button>
         
              <canvas ref={canvasRef} style={{ display: 'none' }} /> 

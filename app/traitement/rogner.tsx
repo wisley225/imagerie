@@ -125,7 +125,7 @@ const Rogner = () => {
             aspect={undefined} // Cadre libre
             className='bg-cover rounded-md  '
           >
-            <img
+            <Image
               ref={imgRef}
               src={imgUrl}
               alt="Source"

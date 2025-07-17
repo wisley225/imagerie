@@ -18,7 +18,7 @@ if (menuRef.current, listLi.current, divBurger.current) {
      const ctx=gsap.context(()=>{
 
 
-    let tl=gsap.timeline()
+    const tl=gsap.timeline()
 
     openMenu ? (
 tl.to(menuRef.current,{

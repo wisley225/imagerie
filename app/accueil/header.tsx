@@ -22,7 +22,7 @@ if ( imgRef.current) {
   const ctx=gsap.context(()=>{
 
     if (cadreRef.current && imgRef.current) {
-      let tl=gsap.timeline();
+      const tl=gsap.timeline();
       tl.to(imgRef.current[0], {
         x: -200,
         duration: 0.2,
@@ -54,7 +54,7 @@ if ( imgRef.current) {
   const ctx=gsap.context(()=>{
 
     if (cadreRef.current && imgRef.current) {
-      let tl=gsap.timeline();
+      const tl=gsap.timeline();
       tl.to(imgRef.current[0], {
         x: 0,
         duration: 0.2,

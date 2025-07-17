@@ -1,23 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import multer from 'multer';
 import sharp from 'sharp';
-import fs from 'fs/promises';
-import path from 'path';
-
-// On prépare multer pour stocker les fichiers dans un dossier temporaire
-const upload = multer({ dest: '/tmp' });
-
-// On wrap multer dans une promesse pour le faire fonctionner avec Next.js (car NextRequest n'est pas compatible express)
-function runMiddleware(req: any, res: any, fn: any) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-}
 
 
 export async function POST(req: NextRequest) {

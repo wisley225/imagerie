@@ -13,7 +13,7 @@ const animationRef = useRef<(HTMLDivElement | null)[]>([]);
 
 
 
-  const ctx=gsap.context(()=>{
+  useEffect(()=>{
     gsap.to(
       animationRef.current[0],
       {
@@ -37,7 +37,7 @@ const animationRef = useRef<(HTMLDivElement | null)[]>([]);
       }
     );
  
-  });
+  }, []);
 
 
 
@@ -48,7 +48,7 @@ const animationRef = useRef<(HTMLDivElement | null)[]>([]);
  },5000)
 
  return ()=>clearTimeout(timer)
-   },[])
+   },[router])
 
 
   return (
