@@ -30,7 +30,7 @@ const handleTraitement = (type: string) => {
 
     return (
         <div>
-      <div onClick={handleClicklogo} className='relative w-40 h-20 '>
+      <div onClick={handleClicklogo} className='relative w-40 h-20 cursor-pointer '>
                   <Image
                   src='/logoImagerie.png'
                   alt='logo imagerie'
