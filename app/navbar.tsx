@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useRef , useEffect ,useState} from 'react';
 import gsap from 'gsap';
 import Link from 'next/link';
+  import { useRouter } from 'next/navigation';
+
 
 const Navbar = () => {
 const menuRef=useRef<HTMLDivElement>(null);
@@ -11,8 +13,11 @@ const [openMenu, setOpenMenu] = useState(false);
 const divBurger = useRef<Array<HTMLDivElement | null>>([]);
 const listLi = useRef<(HTMLLIElement | null)[]>([]);
 const ulNavRef = useRef<HTMLUListElement>(null);
-
-
+  const router = useRouter();
+const handleClicklogo=()=>{
+    
+  router.push('/ma-page');
+}
 useEffect(()=>{
 if (menuRef.current, listLi.current, divBurger.current) {
      const ctx=gsap.context(()=>{
@@ -87,7 +92,7 @@ tl.to(menuRef.current,{
     return (
     <nav ref={ulNavRef}  className=' ulNavRef max-[1130px]:pb-5   bg-white flex  max-[1130px]:flex-col justify-around py-1 shadow-xl   rounded-b-xl  absolute z-30 w-full backdrop-brightness-125'>
     <div id='accueil' className=' flex items-center justify-between px-10'>
-    <div className='relative w-40 h-20 '>
+    <div onClick={handleClicklogo} className='relative w-40 h-20 cursor-pointer '>
     <Image
     src='/logoImagerie.png'
     alt='logo imagerie'
