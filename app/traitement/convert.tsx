@@ -33,17 +33,10 @@ e.preventDefault()
 if (!fichier) return
 
 const formData=new FormData()
-
 formData.append('fichier',fichier);
 formData.append('fichier',format);
-
- for(let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
-
 try {
     const response=await axios.post('/api/convert', formData , {responseType:'blob'})
-      console.log(response.data)
     setBlob(response.data)
 
 } catch (error) {

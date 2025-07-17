@@ -259,7 +259,7 @@ return ()=>ctx.revert()
       visibleRef.current[0]=el;
   }
     
-   }}  className=' max-[840px]:flex-col   paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 max-[840px]:w-1/2 '>
+   }}  className=' max-[840px]:flex-col   paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 max-[840px]:w-96 '>
   
   <Image
     src='/redimenssioner.png'
@@ -292,7 +292,7 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
 {/*  section compresser */}
 
-<h1  className='   bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>compressez vos image</h1>
+<h2  className='   bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>compressez vos image</h2>
 <div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
 
   <div  ref={el=>{if (visibleRef2.current) {
@@ -319,7 +319,7 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
       visibleRef2.current[1]=el;
   }
     
-   }} className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+   }} className=' max-[840px]:w-96 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
   
   <Image
     src='/compresser.png'
@@ -333,13 +333,13 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
 
 {/* convertir */}
-<h1  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>convertissez vos images</h1>
+<h3  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>convertissez vos images</h3>
 <div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
 
 
 <div ref={el=>{if (convertirRef.current) {
       convertirRef.current[0]=el;
-  }}}   className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+  }}}   className=' max-[840px]:w-96 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
   
   <Image
     src='/convert.webp'
@@ -374,10 +374,14 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
 {/*  rogner des images */}
 
-<h1  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>rognez vos images</h1>
+<h4  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '>rognez vos images</h4>
 <div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
 
-  <div   className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+  <div 
+  ref={el=>{if (rognerRef.current) {
+      rognerRef.current[0]=el;
+  }}}
+  className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
    <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>Convertissez vos images et  vos  photos</strong>
   <p className=' font-semibold'>
 Vous pouvez choisir de conserver le ratio largeur/hauteur ou choisir des dimensions libres.
@@ -391,7 +395,11 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
   </div>
  
- <div  className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+ <div
+ ref={el=>{if (rognerRef.current) {
+      rognerRef.current[1]=el;
+  }}}
+ className=' max-[840px]:w-96 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
   
   <Image
     src='/rogner.webp'
@@ -403,14 +411,16 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
 </div>
 
-
-
 {/*  pivotez  des image */}
 
-<h1  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '> pivotez vos images puis telechargez les </h1>
-<div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  '>
+<h5  className='bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent my-32   text-center  text-4xl uppercase font-black font-serif '> pivotez vos images puis telechargez les </h5>
+<div className='max-[840px]:flex-col  flex  justify-center items-center  gap-20  mb-40 '>
 
-  <div   className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
+  <div
+  ref={el=>{if (pivoterRef.current) {
+      pivoterRef.current[0]=el;
+  }}}
+  className=' max-[840px]:w-full  h-[400px]  w-5/12  flex flex-col justify-around items-center text-center'>
    <strong className='text-2xl bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent mb-5 '>pivotez  vos images et  vos  photos</strong>
   <p className=' font-semibold'>
 Vous pouvez choisir de conserver le ratio largeur/hauteur ou choisir des dimensions libres.
@@ -424,7 +434,12 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
 
   </div>
  
- <div  className=' max-[840px]:w-1/2 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
+ <div
+ ref={el=>{if (pivoterRef.current) {
+      pivoterRef.current[1]=el;
+  }}}
+
+ className=' max-[840px]:w-96 paysage top-10  relative rotate-6  h-[400px] rounded-md w-4/12 '>
   
   <Image
     src='/pivoter.webp'
@@ -435,6 +450,10 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
  </div>
 
 </div>
+
+
+
+
 
 </div>
   </>

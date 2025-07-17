@@ -31,13 +31,7 @@ const handleSubmit= async (e:React.FormEvent<HTMLFormElement>)=>{
     }
  const formData = new FormData
   formData.append('fichier',fichier)
-  for(let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
-
 const response = await axios.post('/api/compresser', formData, { responseType: 'blob' });
-console.log(response);
-
 setBlob(response.data)
 
 }
@@ -55,17 +49,7 @@ if (blob) {
 
     return (
         <div>
-              {/* <form onSubmit={(e)=>handleSubmit(e)}>
-         <input onChange={(e)=>handleFileChange(e)} type="file" />
-        <button type='submit' className=' cursor-pointer'>compresser</button>
-     </form>
 
-     { blobUrl &&(
-        <a 
-        href={blobUrl}
-        download={'Image-compresse.jpg'}
-        > telecharger l'image compresser</a>
-     ) } */}
 
 
 

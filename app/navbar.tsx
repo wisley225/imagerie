@@ -6,6 +6,7 @@ import { CgMenu } from "react-icons/cg";
 import { CgMenuMotion } from "react-icons/cg";
 import { useRef , useEffect ,useState} from 'react';
 import gsap from 'gsap';
+import Link from 'next/link';
 
 const Navbar = () => {
 const menuRef=useRef<HTMLDivElement>(null);
@@ -88,7 +89,7 @@ tl.to(menuRef.current,{
 
     return (
     <nav ref={ulNavRef}  className=' ulNavRef max-[1130px]:pb-5   bg-white flex  max-[1130px]:flex-col justify-around py-1 shadow-xl   rounded-b-xl  absolute z-30 w-full backdrop-brightness-125'>
-    <div className=' flex items-center justify-between px-10'>
+    <div id='accueil' className=' flex items-center justify-between px-10'>
     <div className='relative w-40 h-20 '>
     <Image
     src='/logoImagerie.png'
@@ -111,26 +112,28 @@ tl.to(menuRef.current,{
      </div>
 
     <ul   className=  '   max-[1130px]:font-serif max-[1130px]:items-start   max-[1130px]:flex-col   bg-clip-text text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400   via-cyan-600 font-semibold flex  items-center w-full justify-around uppercase'>
-                <li ref={(el)=>{if (listLi.current)
+                <li 
+                 
+                ref={(el)=>{if (listLi.current)
                     listLi.current[0]=el;
                 }}  className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm  hover:brightness-75 cursor-pointer transition-all  '> accueil</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm  hover:brightness-75 cursor-pointer transition-all  '> <a href="#accueil">Accueil</a></li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[1]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>traitemment</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '> <Link href='/traitement'>Traitement</Link></li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[3]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>service</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>Service</li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[4]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20
                 max-[1130px]:items-center max-[1130px]:pl-5
-                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '>contact</li>
+                max-[1130px]:flex bg-clip-text bg text-transparent bg-gradient-to-tr from-cyan-600 to-teal-400    via-cyan-600 text-sm hover:brightness-75 cursor-pointer transition-all  '> <a href="#contact">Contact</a></li>
                 <li ref={(el)=>{if (listLi.current)
                     listLi.current[5]=el;
                 }} className='  max-[1130px]:hover:ml-5  max-[1130px]:border border-b-cyan-600 max-[1130px]:w-full max-[1130px]:h-20

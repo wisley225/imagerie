@@ -62,7 +62,7 @@ const animationRef = useRef<(HTMLDivElement | null)[]>([]);
        <Image alt=' image ' className=' animate-pulse ' height={150} width={150} src='/imageLoader.png'/>
       </div>
      <h1 className='  animate-pulse  mb-3 bg-clip-text  bg-gradient-to-r 
-       from-cyan-600 to-teal-400 via-cyan-600   text-transparent text-8xl  font-serif py-2'> Imagerie</h1>
+       from-cyan-600 to-teal-400 via-cyan-600   text-transparent text-8xl  font-serif '> Imagerie</h1>
     
        
       </div>

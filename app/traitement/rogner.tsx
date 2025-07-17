@@ -13,7 +13,6 @@ const Rogner = () => {
       const [completedCrop, setCompletedCrop] = useState<Crop | null>(null);
       const [rotation, setRotation] = useState(0);
       const selectFileRef = useRef<HTMLInputElement>(null)
-      const [select,setSelect]=useState(false)
 
 
       const handleClick = () => {

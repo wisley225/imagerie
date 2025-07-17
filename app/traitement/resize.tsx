@@ -34,14 +34,10 @@ formData.append('fichier',fichier);
 width && formData.append('width',width)
 height && formData.append('height',height)
 
-  for(let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
 
  try {
  const response= await axios.post('/api/resize',formData,{responseType:'blob'})
  setBlob(response.data)
- console.log(response)
      } catch (error) {
        console.error("erreur lors de l'envoie",error)
  }
@@ -110,7 +106,7 @@ height && formData.append('height',height)
             <a
                 href={blobUrl}
                 download="Image-redimmensionné.jpg"
-                className="m-5 inline-block  cursor-pointer px-4 py-2 bg-green-600 text-white rounded"
+                className="m-5 inline-block  cursor-pointer px-4 py-2  bg-cyan-600     hover:bg-cyan-500 text-white rounded"
             >
                 Télécharger l'image traitée
             </a>

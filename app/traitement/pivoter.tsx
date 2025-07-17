@@ -70,7 +70,7 @@ const handleClick = () => {
     return (
         <div>
            <div className="flex flex-col items-center gap-4">
-        <h2 className="text-xl font-bold">Pivotage d'image</h2>
+        <h2 className="text-xl font-bold  text-center mb-3 bg-clip-text  bg-gradient-to-r   from-cyan-600 to-teal-400 via-cyan-600   text-transparent">Pivotage d'image</h2>
         <input type="file" className=' hidden' ref={selectFileRef} accept="image/*" onChange={onChangeFile} />
 
 
