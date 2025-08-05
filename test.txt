@@ -307,3 +307,72 @@ export default PivotImage;
 
 
 
+
+
+
+
+
+
+2. Crée un fichier Dockerfile
+Dans PowerShell :
+
+powershell
+Copier
+Modifier
+notepad Dockerfile
+Colle dedans ⬇️ :
+
+Dockerfile
+Copier
+Modifier
+# Étape 1 : build
+FROM node:20 AS builder
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+# Étape 2 : image finale
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+COPY --from=builder /app ./
+
+EXPOSE 3000
+CMD ["npm", "start"]
+💾 Enregistre et ferme Notepad.
+
+🚫 3. Crée le fichier .dockerignore
+Toujours dans PowerShell :
+
+powershell
+Copier
+Modifier
+notepad .dockerignore
+Colle dedans ⬇️ :
+
+txt
+Copier
+Modifier
+node_modules
+.next
+.env
+npm-debug.log
+💾 Enregistre et ferme.
+
+🛠️ 4. Construis l’image Docker
+powershell
+Copier
+Modifier
+docker build -t mon-nextjs-app .
+🟡 Si tu as une erreur : vérifie que Docker Desktop est bien ouvert.
+
+🚀 5. Lance ton app Next.js dans Docker
+powershell
+Copier
+Modifier
+docker run -p 3001:3000 mon-nextjs-app
+➡️ Tu peux maintenant ouvrir : http://localhost:3001
