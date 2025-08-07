@@ -213,11 +213,13 @@ return ()=>ctx.revert()
     imgRef.current[0]=el;
   }
   
-}} className=' paysage   top-20 h-60 w-80  -rotate-10   rounded-md shadow-2xl '>
+}} className=' paysage  relative  top-20 h-60 w-80  -rotate-10   rounded-md shadow-2xl '>
  <Image
   src='/paysage1.jpg'
   alt='paysage'
  fill
+     sizes="(max-width: 768px) 100vw, 320px"
+
  className=' object-cover border rounded-md'
   />
     </div>   
@@ -415,7 +417,9 @@ Le traitement par lot permet de redimensionner plusieurs images en même temps p
     src='/rogner.webp'
     alt='image de compression'
     fill
-     sizes="100vw"
+  
+         sizes="(max-width: 768px) 100vw, 320px"
+
   priority //
     className=' rounded-md  mx-auto'
   />

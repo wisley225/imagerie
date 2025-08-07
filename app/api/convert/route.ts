@@ -11,24 +11,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Aucun fichier fourni' }, { status: 400 });
     }
 
+    console.log('Fichier reçu:', fichier.name, fichier.type);
+    console.log('Format demandé:', format);
+
     const arrayBuffer = await fichier.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    let sharpInstance = sharp(buffer);
-
     let mime = 'image/jpeg';
-    if (format === 'png') {
-      sharpInstance = sharpInstance.png();
-      mime = 'image/png';
-    } else if (format === 'webp') {
-      sharpInstance = sharpInstance.webp();
-      mime = 'image/webp';
-    } else {
-      sharpInstance = sharpInstance.jpeg();
-      mime = 'image/jpeg';
-    }
+    if (format === 'png') mime = 'image/png';
+    else if (format === 'webp') mime = 'image/webp';
+    else mime = 'image/jpeg';
 
-    const convertedBuffer = await sharpInstance.toBuffer();
+    const convertedBuffer = await sharp(buffer)
+      .toFormat(format as 'jpeg' | 'png' | 'webp')
+      .toBuffer();
 
     return new NextResponse(convertedBuffer, {
       status: 200,

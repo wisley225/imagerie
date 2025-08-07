@@ -35,6 +35,7 @@ if (!fichier) return
 const formData=new FormData()
 formData.append('fichier',fichier);
 formData.append('fichier',format);
+console.log('Fichier sélectionné:', fichier.name, 'Format:', format);
 try {
     const response=await axios.post('/api/convert', formData , {responseType:'blob'})
     setBlob(response.data)
@@ -80,7 +81,7 @@ try {
         
         select &&
 <div className=' text-center'>
-<select value={format} onChange={ e=>setFormat(e.target.value)}>
+<select value={format} onChange={ (e) =>setFormat(e.target.value)}>
     <option value="jpeg">JPEG</option>
     <option value="png">PNG</option>
     <option value="webp">WEBP</option>
